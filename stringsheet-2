@@ -1,0 +1,790 @@
+# Program 69: Linear Search for Substring
+# class Display:
+
+#     def __init__(self,text,substring):
+#         self.text = text
+#         self.substring = substring
+
+#     def linear(self):
+
+#         text1 = self.text.split()
+#         for i in range(len(text1)):
+#             if text1[i]==self.substring:
+#                 print(i)
+#                 break
+
+
+# text = input("Enter the main string: ")
+# substring = input("Enter the substring: ")
+# d1 = Display(text,substring)
+# d1.linear()
+
+
+
+
+
+# Program 70: Count Occurrences of Substring
+# class Display:
+
+#     def __init__(self,text,substring):
+#         self.text = text
+#         self.substring = substring
+
+#     def count(self):
+
+#         text1 = self.text.split()
+#         count = 0
+#         for i in range(len(text1)):
+#             if text1[i]==self.substring:
+#                 count += 1
+#         print(count)    
+
+
+# text = input("Enter the main string: ")
+# substring = input("Enter the substring: ")
+# d1 = Display(text,substring)
+# d1.count()
+
+
+
+# Program 71: Find All Occurrences of Substring 
+# class Display:
+
+#     def __init__(self,text,substring):
+#         self.text = text
+#         self.substring = substring
+
+#     def linear(self):
+
+#         text1 = self.text.split()
+#         for i in range(len(text1)):
+#             if text1[i]==self.substring:
+#                 print(i)
+                
+
+
+# text = input("Enter the main string: ")
+# substring = input("Enter the substring: ")
+# d1 = Display(text,substring)
+# d1.linear() 
+
+
+
+# Program 72: Check if String Starts With Prefix 
+# class Display:
+
+#     def __init__(self,text,substring):
+#         self.text = text
+#         self.substring = substring
+
+#     def linear(self):
+#         print(self.text.startswith(self.substring))  
+
+
+
+# text = input("Enter the main string: ")
+# substring = input("Enter the substring: ")
+# d1 = Display(text,substring)
+# d1.linear() 
+
+
+
+# Program 73: Check if String Ends With Suffix 
+# class Display:
+
+#     def __init__(self,text,substring):
+#         self.text = text
+#         self.substring = substring
+
+#     def linear(self):
+#         print(self.text.endswith(self.substring))  
+
+
+
+# text = input("Enter the main string: ")
+# substring = input("Enter the substring: ")
+# d1 = Display(text,substring)
+# d1.linear() 
+
+
+
+# Program 74: Find Longest Word in String 
+# class Display:
+#     def __init__(self,text):
+#         self.text = text
+    
+#     def linear(self):
+
+#         max_len = ""
+#         text1 = self.text.split()
+#         for i in range(len(text1)):
+#             if len(text1[i]) > len(max_len):
+#                 max_len = text1[i]
+#         print(max_len)        
+              
+
+# text = input("Enter the main string: ")
+
+# d1 = Display(text)
+# d1.linear() 
+
+
+
+# Program 75: Find Shortest Word in String
+# class Display:
+#     def __init__(self,text):
+#         self.text = text
+    
+#     def linear(self):
+
+#         text1 = self.text.split()
+#         max_len = text1[0]
+
+#         for i in range(len(text1)):
+#             if len(text1[i]) < len(max_len):
+#                 max_len = text1[i]
+#         print(max_len)        
+              
+
+# text = input("Enter the main string: ")
+
+# d1 = Display(text)
+# d1.linear() 
+
+
+
+
+
+# 76: Count Words Starting with Vowel 
+# class Display:
+#     def __init__(self,text):
+#         self.text = text
+    
+#     def linear(self):
+
+#         vowels = "aeiouAEIOU"
+#         text1 = self.text.split()
+#         count = 0
+
+#         for i in range(len(text1)):
+#             word = text1[i]
+
+#             if word[0] in vowels:
+#                 count += 1
+#         print(count)        
+
+# text = input("Enter the main string: ")
+
+# d1 = Display(text)
+# d1.linear() 
+
+
+
+
+# Program 77: Count Words Ending with Vowel 
+# class Display:
+#     def __init__(self,text):
+#         self.text = text
+    
+#     def linear(self):
+
+#         vowels = "aeiouAEIOU"
+#         text1 = self.text.split()
+#         count = 0
+
+#         for i in range(len(text1)):
+#             word = text1[i]
+
+#             if word[-1] in vowels:
+#                 count += 1
+#         print(count)        
+
+# text = input("Enter the main string: ")
+
+# d1 = Display(text)
+# d1.linear() 
+
+
+
+# Program 78: Find Words of Specific Length 
+# class Display:
+#     def __init__(self,text,length):
+#         self.text = text
+#         self.length = length
+    
+#     def linear(self):
+
+#         text1 = self.text.split()
+#         for i in range(len(text1)):
+#             word = text1[i]
+#             if len(word) == self.length:
+#                  print(word)
+   
+
+# text = input("Enter the main string: ")
+# length = int(input("Enter the number of charcter in a word: "))
+# d1 = Display(text,length)
+# d1.linear() 
+
+
+
+# Program 79: Check if Anagram 
+# class Display:
+
+#     def __init__(self,text1,text2):
+#         self.text1 = text1
+#         self.text2 = text2
+
+#     def Anagram(self):
+
+#         a = sorted(self.text1)   
+#         b = sorted(self.text2)
+
+#         if a==b:
+#             print("Anagram")
+#         else:
+#             print("Not Anagram")       
+
+# text1 = input("Enter the string1: ")
+# text2 = input("Enter the string2: ")
+# c1 = Display(text1,text2)
+# c1.Anagram()
+
+
+
+
+# Program 80: Check if Rotation of Another String
+# class Display:
+
+#     def __init__(self,text1,text2):
+#         self.text1 = text1
+#         self.text2 = text2
+
+#     def rotation(self):
+
+#         text = self.text1 +self.text1
+#         if self.text2 in text:
+#             print("String2 is rotation of string1")
+#         else:
+#             print("String2 is not rotation of string1")    
+
+
+# text1 = input("Enter the string1: ")
+# text2 = input("Enter the string2: ")
+# c1 = Display(text1,text2)
+# c1.rotation()
+
+
+
+
+# Program 81: String to Integer Conversion
+# class Display:
+
+#     def __init__(self,text1):
+#         self.text1 = text1
+
+
+#     def rotation(self):
+
+#         text = int(self.text1)
+#         print(text) 
+#         print({type(text)})
+
+# text1 = input("Enter the string1: ")
+
+# c1 = Display(text1)
+# c1.rotation()
+
+
+
+
+# Program 82: Integer to String Conversion 
+# class Display:
+
+#     def __init__(self,text1):
+#         self.text1 = text1
+
+
+#     def rotation(self):
+
+#         text = str(self.text1)
+#         print(text) 
+#         print({type(text)})
+
+# text1 = int(input("Enter the string1: "))
+
+# c1 = Display(text1)
+# c1.rotation()
+
+
+
+
+# Program 83: Count Numbers in String 
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+
+#     def rotation(self):
+#         count = 0
+      
+#         for i in range(len(self.text)):
+#             if self.text[i].isnumeric():
+#                 count +=1
+#         print(count)        
+
+# text = input("Enter the string1: ")
+
+# c1 = Display(text)
+# c1.rotation()
+
+
+
+# Program 84: Extract All Digits from String
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+
+#     def rotation(self):
+
+#        list1 = []
+#        for i in range(len(self.text)):
+#             if self.text[i].isnumeric():
+#                 list1.append(text[i])     
+#        print("".join(list1))
+
+
+
+# text = input("Enter the string1: ")
+
+# c1 = Display(text)
+# c1.rotation()
+
+
+
+# Program 85: Sum of All Digits in String
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+#     def rotation(self):
+
+#        sum = 0
+#        for i in range(len(self.text)):
+#             if self.text[i].isnumeric():
+#                 sum += int(text[i])
+#        print(sum)
+
+# text = input("Enter the string1: ")
+
+# c1 = Display(text)
+# c1.rotation()
+
+
+
+
+# Program 86: Extract All Numbers from String
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+#     def rotation(self):
+
+#        text1 = self.text.split()
+#        list1 = []
+
+#        for i in text1:
+#             word = i.strip(".,!?")
+#             if word.isnumeric():
+#                 list1.append(word)
+
+#        print(",".join(list1))        
+                
+
+# text = input("Enter the string1: ")
+
+# c1 = Display(text)
+# c1.rotation()
+
+
+
+
+
+# Program 87: Replace Numbers with Word
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+#     def rotation(self):
+
+#         digit = {0:'zero',1:'one',2:'two',3:'three',4:'four',5:'five',6:'six',7:'seven',8:'eight',9:'nine'}
+
+#         list1 = []
+#         for i in self.text:
+#             if i.isdigit():
+#                 list1.append(digit[int(i)]+" ")
+#             else:
+#                 list1.append(i)    
+#         print("".join(list1))
+    
+                
+
+# text = input("Enter the string1: ")
+# c1 = Display(text)
+# c1.rotation()
+
+
+
+
+
+# Program 88: Check if String Represents Valid Number
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+#     def number(self):
+#         float(self.text)
+#         print("True")
+
+# text = input("Enter the string: ")
+# d1 = Display(text)
+# d1.number()
+
+
+
+# Program 89: Count Alphabets vs Digits Ratio
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+#     def count(self):
+
+#         alpha_count =0
+#         number_count = 0
+#         for i in self.text:
+#             if i.isalpha():
+#                 alpha_count += 1
+#             elif i.isdigit():
+#                 number_count += 1    
+#             else:
+#                 pass
+#         result = alpha_count/number_count    
+#         print(f"{result:.2f}")
+
+# text = input("Enter the string: ")
+# d1 = Display(text)
+# d1.count()
+
+
+
+
+# Program 90: Remove All Numbers from String
+
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+
+#     def rotation(self):
+
+#        list1 = []
+#        for i in range(len(self.text)):
+#             if not self.text[i].isdigit():
+#                 list1.append(self.text[i])
+#        print("".join(list1))        
+
+# text = input("Enter the string1: ")
+
+# c1 = Display(text)
+# c1.rotation()
+
+
+
+# Program 91: Check if Pangram
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+
+#     def rotation(self):
+
+#         self.text = self.text.lower()
+#         letter = set()
+#         for i in self.text:
+#             if i.isalpha():
+#                 letter.add(i)
+#         if len(letter)==26:
+#             print("Yes")
+#         else:
+#             print("No")
+
+                        
+# text = input("Enter the string1: ")
+# c1 = Display(text)
+# c1.rotation()
+
+
+
+
+
+# Program 92: Check if Isogram
+
+# class Display:
+#     def __init__(self,text):
+#         self.text = text
+
+#     def count(self):
+#         self.text = self.text.lower()
+#         letter = set()
+#         flag = True
+
+#         for i in self.text:
+#             if i.isalpha():
+#                 if i in letter:
+#                     flag = False
+#                 letter.add(i)
+#         if flag:
+#             print("Yes")
+#         else:
+#             print("No")
+
+# text = input("Enter the string: ")
+# d1 = Display(text)
+# d1.count()
+
+
+
+# Program 93: Check if Heterogram
+
+# class Display:
+#     def __init__(self,text):
+#         self.text = text
+
+#     def count(self):
+#         self.text = self.text.lower()
+#         letter = set()
+#         count = 0
+
+#         for i in self.text:
+#             if i.isalpha():
+#                 letter.add(i)
+#                 count += 1
+#         if len(letter)==count:
+#             print("Yes")
+#         else:
+#             print("No")
+
+# text = input("Enter the string: ")
+# d1 = Display(text)
+# d1.count()
+
+
+
+
+# Program 94: Longest Palindromic Substring
+
+# class Display:
+#     def __init__(self,text):
+#         self.text = text
+
+#     def count(self):
+#         text1 = self.text.split()
+#         length = ""
+#         for i in range(len(text1)):
+#             if text1[i] == text1[i][::-1]:
+#                 if len(length) < len(text1[i]):
+#                     length = text1[i]
+
+#         if length:
+#             print(length)
+#         else:
+#             print("No palindrome")    
+            
+
+
+# text = input("Enter the string: ")
+# d1 = Display(text)
+# d1.count()
+
+
+
+# Program 95: Count Palindromic Substrings
+# class Display:
+#     def __init__(self,text):
+#         self.text = text
+
+#     def count(self):
+#         text1 = self.text.split()
+        
+#         palin_count = 0
+#         for i in range(len(text1)):
+#             if text1[i] == text1[i][::-1]:
+#                 palin_count +=1
+
+#         if palin_count ==0:
+#             print("There is no palindrome string")
+#         else:    
+#             print(palin_count)
+
+# text = input("Enter the string: ")
+# d1 = Display(text)
+# d1.count()
+
+
+# Program 96: Remove Duplicate Characters (Keep First) 
+
+# class Display:
+#     def __init__(self,text):
+#         self.text = text
+
+#     def count(self):
+#         text1 = self.text
+#         check = {}
+      
+       
+#         for i in text1:
+#             check[i]=True
+
+#         text2 = "".join(check.keys())
+#         print(text2)    
+
+
+# text = input("Enter the string: ")
+# d1 = Display(text)
+# d1.count()
+
+
+# Program 97: Remove Duplicate Words 
+
+# class Display:
+#     def __init__(self,text):
+#         self.text = text
+
+#     def count(self):
+#         text1 = self.text.split()
+#         check = {}
+      
+       
+#         for i in text1:
+#             check[i]=True
+
+#         text2 = " ".join(check.keys())
+#         print(text2)    
+
+
+# text = input("Enter the string: ")
+# d1 = Display(text)
+# d1.count()
+
+
+# Program 98: Find Common Characters in Two Strings 
+# class Display:
+#     def __init__(self,text1,text2):
+#         self.text1 = text1
+#         self.text2 = text2
+
+#     def count(self):
+#         text1 = self.text1.split()
+#         text2 = self.text2.split() 
+       
+#         for i in range(len(text1)):
+#             for j in range(len(text2)):
+#                 if text1[i]==text2[j]:
+#                     print(text1[i])
+           
+# text1 = input("Enter the string1: ")
+# text2 = input("Enter the string2: ")
+# d1 = Display(text1,text2)
+# d1.count()
+
+
+
+
+# Program 101: Longest Common Substring
+
+# class Display:
+#     def __init__(self,text1,text2):
+#         self.text1 = text1
+#         self.text2 = text2
+
+#     def count(self):
+#         text1 = self.text1
+#         text2 = self.text2
+
+#         longest_sub = ''
+#         for i in range(len(text1)):
+#             for j in range(i+1,len(text2)+1):
+#                 sub = text1[i:j]
+#                 if (sub in text2) and (len(sub) > len(longest_sub)):
+#                     longest_sub = sub
+#         print(longest_sub)
+
+# text1 = input("Enter the string1: ")
+# text2 = input("Enter the string2: ")
+# d1 = Display(text1,text2)
+# d1.count()
+
+
+# Program 104: Count Vowel Substrings 
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+#     def count(self):
+
+#         count = 0
+#         text1 = self.text.split()
+#         vowels = 'aeiouAEIOU'
+#         for i in range(len(text1)):
+#             if text1[i] in vowels:
+#                 count += 1
+#         print(count)        
+# text = input("Enter the string: ")
+# d1 = Display(text)
+# d1.count()                
+
+
+
+
+# Program 111: Sort Words Alphabetically 
+# class Display:
+
+#     def __init__(self,text):
+#         self.text = text
+
+#     def count(self):
+
+#         text1 = sorted(self.text) 
+#         print("".join(text1)) 
+
+# text = input("Enter the string: ")
+# d1 = Display(text)
+# d1.count() 
+
+
+
+# Program 112: Sort Words by Length
+class Display:
+
+    def __init__(self,text):
+        self.text = text
+
+    def count(self):
+
+        text1 = sorted(self.text) 
+        print("".join(text1)) 
+        
+text = input("Enter the string: ")
+d1 = Display(text)
+d1.count() 

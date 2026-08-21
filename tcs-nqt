@@ -1,0 +1,220 @@
+#Gym Membership Cost
+# class Gym:
+#     def __init__(self):
+#         self.plantype = 0
+#         self.months = 0
+
+#     def get_plantype(self):
+#         return self.plantype
+    
+#     def set_plantype(self,plantype):
+#         self.plantype = plantype
+
+#     def get_months(self):
+#         return self.months
+    
+#     def set_months(self,months):
+#         self.months = months
+
+#     def ammount(self,plantype,months,fee):
+#         fee = 0
+#         if plantype==1:
+#             fee = months*1000
+#             if months < 3:
+#                 fee = fee + 500
+#             elif 3 <= months <= 5:
+#                 fee = fee - (fee * 5/100)
+#                 fee = fee + 500
+#             elif 6 <= months <= 11:
+#                 fee = fee -(fee *15/100)
+#                 fee = fee + 500
+#             else:
+#                 fee = fee -(fee *15/100)
+#                 fee = fee + 500
+#         elif plantype==2:
+#             fee = months*1500
+#             if months < 3:
+#                 fee = fee + 500
+#             elif 3 <= months <= 5:
+#                 fee = fee - (fee*5/100)
+#                 fee = fee + 500
+#             elif 6 <= months <= 11:
+#                 fee = fee - (fee* 10/100)
+#                 fee = fee + 500
+#             else:
+#                 fee = fee -(fee *15/100)
+                
+#                 fee = fee + 500 
+#         else:
+#             fee = months*2000
+#             if months < 3:
+#                 fee = fee + 500
+#             elif 3 <= months <= 5:
+#                 fee = fee -(fee *5/100)
+#                 fee = fee + 500
+#             elif 6 <= months <= 11:
+#                 fee = fee -(fee *10/100)
+#                 fee = fee + 500
+#             else:
+#                fee = fee -(fee *15/100)
+#                fee = fee + 500    
+#         return fee                                 
+
+# g1 = Gym()
+# g1.set_plantype(2)
+# g1.set_months(6)                    
+# print("Enter the type of plan ",g1.get_plantype())
+# print("Enter th type of months: ",g1.get_months())
+
+# print("The total fees is: ",g1.ammount(g1.get_plantype(), g1.get_months(), 0))
+
+
+# 2. Fraud Transaction Detection
+# class Bank:
+#     def __init__(self):
+#         self.n = 0
+#         self.limit = 0
+#         self.ammounts = []
+#     def get_n(self):
+#         return self.n 
+       
+#     def set_n(self,n):
+#         self.n = n
+
+#     def get_limit(self):
+#         return self.limit   
+    
+#     def set_limit(self,limit):
+#         self.limit = limit  
+
+#     def add_ammounts(self,*n):
+#         for i in n:
+#             self.ammounts.append(i)
+    
+#     def suspicious(self,n,limit,ammounts,count):
+#         count = 0
+#         dict1 = {}
+#         if 1 <= n <= 100000 and 1<= limit <= 100000000:
+#             for i in self.ammounts:
+#                 if 1 <= i <=1000000000:
+#                     if i >= limit:
+#                         count+= 1
+#                     if i in dict1:
+#                         count += 1
+#                     dict1[i] = True
+#         return count                    
+
+# b1 = Bank()
+# b1.set_n(8)
+# b1.set_limit(2000)  
+# b1.add_ammounts(500,1200,700,1200,3000,400,3000,1200) 
+ 
+# result = b1.suspicious(b1.get_n(), b1.get_limit(), b1.ammounts,0)     
+# print("The suspicious count is: ",result)
+
+# Task Scheduling using Selection Sort
+# class Task:
+
+#     def selection(self, n):
+#         dict1 = {}
+#         p_list = []
+#         for i in range(n):
+#             key = int(input("Enter the taskid: "))
+#             value = int(input("Enter the Priority : "))
+            
+#             dict1[key] = value 
+#             p_list.append(value)
+        
+#         for i in range(len(p_list)-1):
+#             min = p_list[i]
+#             k = i  
+#             temp = 0
+#             for j in range(i+1, len(p_list)):
+#                 if min > p_list[j]:
+#                     min = p_list[j]
+#                     k = j
+            
+#             temp = min 
+#             min = p_list[i] 
+#             p_list[i] = temp 
+#             p_list[k] = min 
+
+#         p_list = set(p_list)
+
+#         return dict1, p_list
+
+
+#     def dictionary(self, n): 
+#         dict1, p_list = self.selection(n)
+#         t_list = []
+
+#         for i in p_list:
+#             temp = []
+#             for key, values in dict1.items():    
+#                 if values == i:
+#                     temp.append(key)
+
+#             temp.sort()
+#             t_list.extend(temp)
+
+#         print(t_list)
+
+
+# t1 = Task()
+# n = int(input("Enter the Element : "))
+# t1.dictionary(n)
+
+
+# 5. Multi-Tier Discount Logic
+# 
+
+
+
+#-----------------------------------------------------tcs -nqt second sheet----------------------------------------
+# prime index sum calculation
+class Prime:
+
+    def __init__(self,x,y):
+        
+        self.x = x
+        self.y = y
+
+    def calculation(self): 
+        
+        index = 2
+        count = 0
+        a_value = 0
+        b_value = 0
+
+        while count < self.y:
+            if index == 0:
+                count += 1
+                if count != self.x:
+                 a_value = index
+            
+            index +=1
+            continue
+
+        for i in range(2,index):
+            if index %i==0:
+                break
+            elif i==index-1:
+                if count == self.x:
+                    a_value = index
+
+                    if count == self.y:
+                        b_value = index
+
+        index +=1 
+        
+        print("Number Calculated: ",a_value + b_value - 1)
+                # elif i==idx//2:
+
+p1 = Prime(1,2)
+p1.calculation()
+
+
+
+
+
+
