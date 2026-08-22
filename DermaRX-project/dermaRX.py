@@ -23,7 +23,8 @@ class databaseconnection:
 
         finally:
             print("Closing connection")   
-d1 = databaseconnection
+
+d1 = databaseconnection()
 class user:
 
     def __init__(self,name,phoneno,age,email):
@@ -35,13 +36,31 @@ class user:
 class UserRegistration:
 
     def register(self):
-        pass
+       
         connection = d1.get_connection()
         cursorObject = connection.cursor()
-        
+        cursorObject.execute("select * from users where email=%s OR phoneno=%s", (user.email, user.phoneno))
+        result = cursorObject.fetchone()
+        if result:
+            print("User already exit")
+        else:
+            cursorObject.execute("INSERT INTO Student1 (name,phoneno, email, age) VALUES (%s, %s, %s,%s)" ,
+                (user.name, user.phoneno, user.age, user.email))    
+            connection.commit()
+            print("User registered successfully!")
+        cursorObject.close()
+
         # create object of user
         # create database connection
         # check if email and phone no already exist 
 
-    def login(self):
-        pass
+    def login(self,email,phoneno):
+        connection = d1.get_connection()
+        cursorObject = connection.cursor()
+        cursorObject.execute("select * from user where email =%s and phoneno = %s",(email,phoneno))
+        result = cursorObject.fetchone()
+        if result:
+            print("Login successful!")
+        else:
+            print("Invalid credentials")
+        cursorObject.close()
