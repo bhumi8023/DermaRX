@@ -72,6 +72,8 @@ class UserRegistration:
     def login(self,email,phoneno):
         connection = d1.get_connection()
         cursorObject = connection.cursor()
+        phoneno = int(input("Enter the phoneno: "))
+        email = input("Enter the email-id: ")
         query = """select * from user where email =%s and phoneno = %s"""
         cursorObject.execute(query,(email,phoneno))
         result = cursorObject.fetchone()
@@ -84,4 +86,4 @@ class UserRegistration:
 
 ur1 = UserRegistration()
 ur1.register()
-ur1.login('siya@123',982365745)
+ur1.login()
