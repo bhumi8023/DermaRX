@@ -71,6 +71,8 @@ class UserRegistration:
 
     def login(self,email,phoneno):
         connection = d1.get_connection()
+        phoneno = int(input("Enter the phoneno: "))
+        email = input("Enter the email-id: ")
         cursorObject = connection.cursor()
         phoneno = int(input("Enter the phoneno: "))
         email = input("Enter the email-id: ")
@@ -86,4 +88,8 @@ class UserRegistration:
 
 ur1 = UserRegistration()
 ur1.register()
+<<<<<<< HEAD
 ur1.login()
+=======
+ur1.login()
+>>>>>>> a3be98a (Add new project features)
