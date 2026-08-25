@@ -103,15 +103,12 @@ class UserRegistration:
         email = input("Enter the email-id: ")
         password = input("Enter the password: ")
         cursorObject = connection.cursor()
-<<<<<<< HEAD
         phoneno = int(input("Enter the phoneno: "))
         email = input("Enter the email-id: ")
         query = """select * from user where email =%s and phoneno = %s"""
         cursorObject.execute(query,(email,phoneno))
-=======
         query = """select * from user where email =%s and phoneno = %s and password = %s"""
         cursorObject.execute(query,(email,phoneno,password))
->>>>>>> 85198b4 (Add role selection and fix database connection)
         result = cursorObject.fetchone()
         if result:
             print("Login successful!")
@@ -119,16 +116,134 @@ class UserRegistration:
             print("Invalid credentials")
         cursorObject.close()
 
+class Profiledetails:
+
+    def __init__(self,user_id,firstname,lastname,dob,gender):
+            self.user_id = user_id
+            self.firstname = firstname
+            self.lastname = lastname
+            self.dob = dob
+            self.gender = gender
+            # self.address = address
+           
+class Profile:
+
+    def create_profile(self):
+        connection = d1.get_connection()
+        cursorObject = connection.cursor()
+        try:
+
+            user_id = int(input("Enter the user_id: "))
+
+            query = """select * from user where user_id = %s """
+            cursorObject.execute(query,(user_id,))
+            result = cursorObject.fetchone()
+
+            if result is None:
+                print("User ID  not found!")
+                return
+            
+            firstname = input("Enter the firstname: ")
+            lastname = input("Enter the lastname: ")
+            dob = input("Enter the date of birth: ")
+            gender = input("Enter the gender: ")
+            # address = input("Enter the address: ")
+            profile = Profiledetails(
+                user_id,
+                firstname,
+                lastname,
+                dob,
+                gender
+            )
+            query = """insert into profile (user_id,firstname,lastname,dob,gender) VALUES (%s, %s, %s,%s,%s)"""
+            cursorObject.execute(query,(profile.user_id,profile.firstname,profile.lastname,profile.dob,profile.gender))
+            connection.commit()
+            print("Profile created successfully!")
+
+        except mysql.connector.Error as e:
+            print("Database Error:", e)
+
+        finally:
+            cursorObject.close()
+
+    def read(self):
+        connection = d1.get_connection()
+        cursorObject = connection.cursor()
+        try:
+            self.user_id = int(input("Enter the user_id: "))
+            query = """select profile.firstname , profile.lastname,profile.dob,profile.gender,user.phoneno,user.age,user.email
+                 from user join profile on user.user_id = profile.user_id where user.user_id = %s """
+            cursorObject.execute(query, (self.user_id,))
+            result = cursorObject.fetchone()
+            if result:
+                print("\n----- PROFILE DETAILS -----")
+                print("Firstname:", result[0])
+                print("Lastname:", result[1])
+                print("DOB:", result[2])
+                print("Gender:", result[3])
+                print("Phone No:", result[4])
+                print("Age:", result[5])
+                print("Email:", result[6])
+            else:
+                 print("Profile not found!")
+
+        except mysql.connector.Error as e:
+                    print("Database Error:", e)
+        
+        finally:
+            cursorObject.close()         
+                  
+    def update(self):
+        connection = d1.get_connection()
+        cursorObject = connection.cursor()
+        try:
+            user_id = int(input("Enter the user_id: "))
+
+            print("1.First name")
+            print("2.last name")
+            print("3.DOB")
+            print("4.Gender")
+
+            choice = int(input("Enter the choice: "))
+
+            if choice==1:
+                value = input("Enter the new first name: ")
+                query = """Update profile set  firstname = %s where user_id = %s"""
+            elif choice ==2:    
+                value = input("Enter the new last name: ")
+                query = """Update profile set  lasttname = %s where user_id = %s"""
+            elif choice ==3:    
+                value = input("Enter the new DOB: ")
+                query = """Update profile set DOB = %s where user_id = %s"""
+            elif choice ==4:    
+                value = input("Enter the new gender: ")
+                query = """Update profile set gender = %s where user_id = %s"""           
+            else:
+                 print("Invalid choice")
+
+            cursorObject.execute(query, (value, user_id))
+            connection.commit()     
+        except:
+             print("database error")
+        finally:
+            cursorObject.close()   
+
+    def delete(self):
+        connection = d1.get_connection()
+        cursorObject = connection.cursor()
+        try:
+            user_id = int(input("Enter the user_id: "))   
+            query = """delete from profile where user_id = %s"""
+            cursorObject.execute(query, user_id)
+            connection.commit()
+        except:
+            print("database error")
+        finally:
+            cursorObject.close()
+                      
+          
 
 ur1 = UserRegistration()
-<<<<<<< HEAD
-ur1.register()
-<<<<<<< HEAD
-ur1.login()
-=======
-ur1.login()
->>>>>>> a3be98a (Add new project features)
-=======
 print("\n*****DERMA-RX******")
 print("1. Register")
 print("2. Login")
@@ -138,4 +253,24 @@ if choice == "1":
 
 elif choice == "2":
     ur1.login()
->>>>>>> 85198b4 (Add role selection and fix database connection)
+else:
+     print("Wrong choice")
+
+p1 = Profile()
+print("\n*****DERMA-RX-Profile******")
+print("1.Create")
+print("2.Read")
+print("3.Update")
+print("4.Delete")
+choice = input("\nEnter your choice: ")
+if choice == "1":
+    p1.create_profile()
+elif choice == "2":
+    p1.read()
+elif choice=="3":
+     p1.update()
+elif choice == "4":
+     p1.delete() 
+else:
+     print("Wrong choice")         
+
