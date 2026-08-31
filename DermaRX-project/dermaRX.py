@@ -234,7 +234,7 @@ class Profile:
         try:
             user_id = int(input("Enter the user_id: "))   
             query = """delete from profile where user_id = %s"""
-            cursorObject.execute(query, user_id)
+            cursorObject.execute(query, (user_id,))
             connection.commit()
         except:
             print("database error")
@@ -242,6 +242,122 @@ class Profile:
             cursorObject.close()
                       
           
+class addressdetails:
+    def __init__(self, user_id, street, city, state, zipcode, is_default=False):
+        self.user_id = user_id
+        self.street = street
+        self.city = city
+        self.state = state
+        self.zipcode = zipcode
+        self.is_default = is_default
+
+class address:
+
+    def add_address(self):
+        connection = d1.get_connection()
+        cursorObject = connection.cursor()
+        try:
+            user_id = int(input("enter user_id: "))
+            street = input("enter street: ")
+            city = input("enter city: ")
+            state = input("enter state: ")
+            zipcode = input("enter zipcode: ")
+            is_default = input("is this default address: ") == "yes"
+
+            if is_default:
+                cursorObject.execute("update address set is_default = false where user_id = %s", (user_id,))
+
+            cursorObject.execute(
+                "insert into address (user_id, street, city, state, zipcode, is_default) values (%s, %s, %s, %s, %s, %s)",
+                (user_id, street, city, state, zipcode, is_default))
+            connection.commit()
+            print("address added successfully!")
+        except:
+             print("Database error")
+
+        finally:
+            cursorObject.close()
+
+
+    def read_addresses(self):
+        connection = d1.get_connection()
+        cursorObject = connection.cursor(dictionary=True)
+
+        try:
+            user_id = int(input("enter user_id: "))
+            
+            cursorObject.execute("select * from address where user_id=%s", (user_id,))
+            results = cursorObject.fetchall()
+        
+            if results:
+                for i in results:
+                    print(f"street: {i['street']}, city: {i['city']}, state: {i['state']}, zip: {i['zipcode']}, default: {i['is_default']}")
+            else:
+                print("no addresses found!")
+        except mysql.connector.Error as e:
+            print("Database Error:", e)
+                     
+        finally:
+            cursorObject.close()
+
+
+    def update_address(self):
+        connection = d1.get_connection()
+        cursorObject = connection.cursor()
+        try:
+            addr_id = int(input("enter address id: "))
+
+            print("1. street")
+            print("2. city")
+            print("3. state")
+            print("4. zipcode")
+            print("5. set as default")
+
+            choice = int(input("enter your choice: "))
+
+            if choice == 1:
+                value = input("enter new street: ")
+                query = """update address set street = %s where id = %s"""
+            elif choice == 2:
+                value = input("enter new city: ")
+                query = """update address set city = %s where id = %s"""
+            elif choice == 3:
+                value = input("enter new state: ")
+                query = """update address set state = %s where id = %s"""
+            elif choice == 4:
+                value = input("enter new zipcode: ")
+                query = """update address set zipcode = %s where id = %s"""
+            elif choice == 5:
+                user_id = int(input("enter user_id: "))
+                cursorObject.execute("update address set is_default=false where user_id=%s", (user_id,))
+                value = True
+                query = """update address set is_default = %s where id = %s"""
+            else:
+                print("invalid choice")
+                return
+
+            cursorObject.execute(query, (value, addr_id))
+            connection.commit()
+            print("address updated successfully!")
+
+        except:
+            print("database error")
+        finally:
+            cursorObject.close()
+
+
+    def delete_address(self):
+        try:
+            connection = d1.get_connection()
+            cursorObject = connection.cursor()
+            addr_id = int(input("enter address id: "))
+            cursorObject.execute("delete from address where id=%s", (addr_id,))
+            connection.commit()
+            print("address deleted successfully!")
+        except:
+             print("Datbase error")
+        finally:
+            cursorObject.close()         
 
 ur1 = UserRegistration()
 print("\n*****DERMA-RX******")
@@ -263,6 +379,7 @@ print("2.Read")
 print("3.Update")
 print("4.Delete")
 choice = input("\nEnter your choice: ")
+
 if choice == "1":
     p1.create_profile()
 elif choice == "2":
@@ -274,3 +391,20 @@ elif choice == "4":
 else:
      print("Wrong choice")         
 
+a1 = address()
+print("1.add address")
+print("2.view addresses")
+print("3.update address")
+print("4.delete address")
+choice = input("\nenter your choice: ")
+
+if choice == "1":
+    a1.add_address()
+elif choice == "2":
+    a1.read_addresses()
+elif choice == "3":
+    a1.update_address()
+elif choice == "4":
+    a1.delete_address()
+else:
+    print("wrong choice")
