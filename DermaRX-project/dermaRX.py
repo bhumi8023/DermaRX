@@ -243,9 +243,10 @@ class Profile:
                       
           
 class addressdetails:
-    def __init__(self, user_id, street, city, state, zipcode, is_default=False):
+    def __init__(self, user_id, street_one, street_two,city, state, zipcode, is_default=False):
         self.user_id = user_id
-        self.street = street
+        self.street_one = street_one
+        self.street_two = street_two
         self.city = city
         self.state = state
         self.zipcode = zipcode
@@ -258,7 +259,8 @@ class address:
         cursorObject = connection.cursor()
         try:
             user_id = int(input("enter user_id: "))
-            street = input("enter street: ")
+            street = input("enter street-one: ")
+            street = input("enter street-two: ")
             city = input("enter city: ")
             state = input("enter state: ")
             zipcode = input("enter zipcode: ")
@@ -268,7 +270,7 @@ class address:
                 cursorObject.execute("update address set is_default = false where user_id = %s", (user_id,))
 
             cursorObject.execute(
-                "insert into address (user_id, street, city, state, zipcode, is_default) values (%s, %s, %s, %s, %s, %s)",
+                "insert into address (user_id, street_one,street_two, city, state, zipcode, is_default) values (%s,%s, %s, %s, %s, %s, %s)",
                 (user_id, street, city, state, zipcode, is_default))
             connection.commit()
             print("address added successfully!")
@@ -291,7 +293,7 @@ class address:
         
             if results:
                 for i in results:
-                    print(f"street: {i['street']}, city: {i['city']}, state: {i['state']}, zip: {i['zipcode']}, default: {i['is_default']}")
+                    print(f"street_one: {i['street_one']},street_two: {i['street_two']} ,city: {i['city']}, state: {i['state']}, zip: {i['zipcode']}, default: {i['is_default']}")
             else:
                 print("no addresses found!")
         except mysql.connector.Error as e:
@@ -307,27 +309,31 @@ class address:
         try:
             addr_id = int(input("enter address id: "))
 
-            print("1. street")
-            print("2. city")
-            print("3. state")
-            print("4. zipcode")
-            print("5. set as default")
+            print("1. street-1")
+            print("2. street-2")
+            print("3. city")
+            print("4. state")
+            print("5. zipcode")
+            print("6. set as default")
 
             choice = int(input("enter your choice: "))
 
             if choice == 1:
-                value = input("enter new street: ")
-                query = """update address set street = %s where id = %s"""
+                value = input("enter new street-one: ")
+                query = """update address set street_one = %s where id = %s"""
             elif choice == 2:
+                value = input("enter new street-two: ")
+                query = """update address set street_two = %s where id = %s"""    
+            elif choice == 3:
                 value = input("enter new city: ")
                 query = """update address set city = %s where id = %s"""
-            elif choice == 3:
+            elif choice == 4:
                 value = input("enter new state: ")
                 query = """update address set state = %s where id = %s"""
-            elif choice == 4:
+            elif choice == 5:
                 value = input("enter new zipcode: ")
                 query = """update address set zipcode = %s where id = %s"""
-            elif choice == 5:
+            elif choice == 6:
                 user_id = int(input("enter user_id: "))
                 cursorObject.execute("update address set is_default=false where user_id=%s", (user_id,))
                 value = True
