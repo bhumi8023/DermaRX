@@ -353,9 +353,9 @@ class address:
 
 
     def delete_address(self):
+        connection = d1.get_connection()
+        cursorObject = connection.cursor()
         try:
-            connection = d1.get_connection()
-            cursorObject = connection.cursor()
             addr_id = int(input("enter address id: "))
             cursorObject.execute("delete from address where id=%s", (addr_id,))
             connection.commit()
@@ -364,6 +364,31 @@ class address:
              print("Datbase error")
         finally:
             cursorObject.close()         
+
+class Productdetails:
+
+    def __init__(self,cate_id,cate_name):
+        self.cate_id = cate_id
+        self.cate_name = cate_name
+
+class Category:
+
+    def create(self):
+        connection = d1.get_connection()
+        cursorObject = connection.cursor()
+        try:
+            cate_id = int(input("Enter the category-id: "))
+            cate_name = input("Enter category name: ")
+            query ="""insert into address (cate_id,cate_name) values (%s,%s)",
+                            (cate_id,cate_name)"""
+            cursorObject.execute(query,(cate_id,cate_name))
+            connection.commit()
+            print("address added successfully!")
+        except:
+            print("Database error")
+            
+        finally:
+            cursorObject.close()
 
 ur1 = UserRegistration()
 print("\n*****DERMA-RX******")
