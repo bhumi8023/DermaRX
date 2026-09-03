@@ -87,4 +87,21 @@ class Category:
         finally:
             print("Deletion complete") 
     
-            
+class Productdetails:
+
+    def __init__(self,cate_id,prod_name,prod_desc,price,slug):
+        self.cate_id = cate_id
+        self.prod_name = prod_name
+        self.prod_desc = prod_desc
+        self.price = price
+        self.slug = slug
+
+class Product:
+
+    def __init__(self):
+        db = databaseconnection()
+        self.connection = db.get_connection()
+        self.cursorObject = self.connection.cursor()
+        
+    def read(self):
+

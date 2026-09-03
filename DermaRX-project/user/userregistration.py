@@ -11,12 +11,14 @@ class User:
  
 
 class UserRegistration:
-
+    def __init__(self):
+        db = databaseconnection()
+        self.connection = db.get_connection()
+        self.cursorObject = self.connection.cursor()
     def register(self):
-        connection = d1.get_connection()
-        cursorObject = connection.cursor()
+       
         try:
-            cursorObject.execute("""
+            self.cursorObject.execute("""
                             CREATE TABLE if not exists User(
                             user_id INT AUTO_INCREMENT PRIMARY KEY,
                             role_id INT,
@@ -28,7 +30,7 @@ class UserRegistration:
                             FOREIGN KEY (role_id) REFERENCES role(role_id)
                             )
                         """)
-            connection.commit()
+            self.connection.commit()
 
             name = input("Enter the name: ")
             phoneno = int(input("Enter the phoneno: "))
@@ -52,58 +54,64 @@ class UserRegistration:
                         role_id)
             
             query ="""select * from user where email=%s OR phoneno=%s"""
-            cursorObject.execute(query,(user.email,user.phoneno))
-            result = cursorObject.fetchone()
+            self.cursorObject.execute(query,(user.email,user.phoneno))
+            result = self.cursorObject.fetchone()
             if result:
                 print("User already exit")
             else:
                 query = """insert into user (name,phoneno,age,email,password,role_id) VALUES (%s, %s, %s,%s,%s,%s)"""
-                cursorObject.execute(query,(user.name, user.phoneno, user.age, user.email,user.password,user.role_id))
-                connection.commit()
+                self.cursorObject.execute(query,(user.name, user.phoneno, user.age, user.email,user.password,user.role_id))
+                self.connection.commit()
                 roles = {
                 1: "Customer",
                 2: "Admin",
                 3: "Pharmacist"}
                 print(f"{roles[role_id]} registered successfully!")
 
-            cursorObject.close()
+            
         except:
          print("Database Error")
 
         finally:
-            cursorObject.close()
+           print("registeration completed")
         # create object of user
         # create database connection
         # check if email and phone no already exist 
 
     def login(self):
-        connection = d1.get_connection()
-        cursorObject = connection.cursor()
-        
+       
         try:
-            phoneno = int(input("Enter the phoneno: "))
-            email = input("Enter the email-id: ")
-            password = input("Enter the password: ")
+            print("\n***** LOGIN *****")
+            print("1. Login with Phone Number")
+            print("2. Login with Email")
 
-            cursorObject = connection.cursor()
-            phoneno = int(input("Enter the phoneno: "))
+            choice = input("Enter your choice: ")
 
-            email = input("Enter the email-id: ")
-            query = """select * from user where email =%s and phoneno = %s"""
-            cursorObject.execute(query,(email,phoneno))
+            if choice == "1":
 
-            query = """select * from user where email =%s and phoneno = %s and password = %s"""
-            cursorObject.execute(query,(email,phoneno,password))
+                phoneno = int(input("Enter phone number: "))
+                password = input("Enter the password: ")
+                query = """select * from user where phoneno = %s and password = %s"""
+                self.cursorObject.execute(query,(phoneno,password))
 
-            result = cursorObject.fetchone()
+            elif choice == "2":
+
+                email = input("Enter the email: ")   
+                password = input("Enter the password: ") 
+                query = """select * from user where email = %s and password = %s"""
+                self.cursorObject.execute(query,(email,password))
+            else:
+                print("Invalid choice")
+                return
+            result = self.cursorObject.fetchone()
+
             if result:
                 print("Login successful!")
             else:
                 print("Invalid credentials")
+
         except:
                 print("Database Error")
         
         finally:
-            cursorObject.close()
-                # create object of user
-                # create database conne    
+            print("Login completed")
