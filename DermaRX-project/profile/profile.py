@@ -16,6 +16,28 @@ class Profile:
         db = databaseconnection()
         self.connection = db.get_connection()
         self.cursorObject = self.connection.cursor()
+    def menu(self):
+       
+        print("\n--- profile menu ---")
+        print("1. create profile")
+        print("2. read profile")
+        print("3. update profile")
+        print("4. delete profile")
+      
+
+        choice = input("enter your choice: ")
+
+        if choice == "1":
+            self.create_profile()
+        elif choice == "2":
+            self.read()
+        elif choice == "3":
+            self.update()
+        elif choice == "4":
+            self.delete()
+        else:
+            print("invalid choice, try again.")
+
 
     def create_profile(self):
         try:
@@ -142,6 +164,30 @@ class addressdetails:
         self.is_default = is_default
 
 class address:
+
+
+    def menu(self):
+       
+        print("\n--- address menu ---")
+        print("1. add address")
+        print("2. read addresses")
+        print("3. update address")
+        print("4. delete address")
+        print("5. exit")
+
+        choice = input("enter your choice (1-5): ")
+
+        if choice == "1":
+            self.add_address()
+        elif choice == "2":
+            self.read_addresses()
+        elif choice == "3":
+            self.update_address()
+        elif choice == "4":
+            self.delete_address()
+        else:
+            print("invalid choice, try again.")
+
 
     def __init__(self):
         db = databaseconnection()

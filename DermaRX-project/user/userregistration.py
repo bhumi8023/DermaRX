@@ -15,6 +15,26 @@ class UserRegistration:
         db = databaseconnection()
         self.connection = db.get_connection()
         self.cursorObject = self.connection.cursor()
+
+
+   
+    def menu(self):
+       
+        print("\n--- user menu ---")
+        print("1. register user")
+        print("2. login user")
+       
+
+        choice = input("enter your choice: ")
+
+        if choice == "1":
+                self.register()
+        elif choice == "2":
+                self.login()
+        else:
+            print("invalid choice, try again.")     
+
+
     def register(self):
        
         try:
