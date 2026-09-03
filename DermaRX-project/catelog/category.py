@@ -102,6 +102,23 @@ class Product:
         db = databaseconnection()
         self.connection = db.get_connection()
         self.cursorObject = self.connection.cursor()
-        
-    def read(self):
+
+    def create(self):
+
+        cate_id = int(input("Enter the category-id: "))
+        prod_name = input("Enter the product name: ")
+        prod_desc = input("Enter the product description: ")
+        price = float(input("Enter the price of the product: "))
+        slug = input("Enter the slug: ")
+
+        values = Productdetails(
+                cate_id,
+                prod_name,
+                prod_desc,
+                price,
+                slug )
+        query = """insert into product(cate_id,prod_name,prod_desc,price,slug)"""
+                                                                                                                                                
+
+
 
