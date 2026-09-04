@@ -175,7 +175,7 @@ class address:
         print("4. delete address")
         print("5. exit")
 
-        choice = input("enter your choice (1-5): ")
+        choice = input("enter your choice: ")
 
         if choice == "1":
             self.add_address()

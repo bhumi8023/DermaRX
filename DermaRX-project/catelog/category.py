@@ -130,7 +130,7 @@ class Product:
 
     def menu(self):
             
-        print("\nchoose an operation:")
+        print("----Product Menu----")
         print("1. create product")
         print("2. read product")
         print("3. update product")
@@ -159,7 +159,7 @@ class Product:
             price = float(input("Enter the price of the product: "))
             slug = input("Enter the slug: ")
 
-            values = Productdetails(
+            values = (
                     cate_id,
                     prod_name,
                     prod_desc,
@@ -169,7 +169,7 @@ class Product:
                 (%s,%s,%s,%s,%s)"""
             self.cursorObject.execute(query,values)
             self.connection.commit()
-            print("address added successfully!")
+           
             
         except Exception as e:         
             print("Database error: ",e)    
@@ -188,6 +188,7 @@ class Product:
             self.cursorObject.fetchall()
             if result:
                 for i in result:  
+              
                     print("Product ID:", i[0])
                     print("Category ID:", i[1])
                     print("Product Name:", i[2])
@@ -242,9 +243,9 @@ class Product:
 
     def delete(self):
         try:
-            prod_id = int(input("enter the product id to delete: "))
+            product_id = int(input("enter the product id to delete: "))
             query = """delete from product where product_id = %s"""
-            self.cursorobject.execute(query, (prod_id,))
+            self.cursorObject.execute(query, (product_id,))
             self.connection.commit()
             print("product deleted successfully!")
 

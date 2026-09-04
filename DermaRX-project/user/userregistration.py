@@ -64,8 +64,8 @@ class UserRegistration:
 
             role_id = int(input("Enter the role id: "))
             if role_id not in [1, 2, 3]:
-                        print("Invalid role selected!")
-                        return
+                    print("Invalid role selected!")
+                    return
             user = User(name,
                         phoneno,
                         age,
